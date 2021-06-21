@@ -1,0 +1,27 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border:10px solid black;
+}
+input{
+    width:500px;
+    border:none;
+    border-bottom: 1px solid black;
+    margin: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+textarea{
+    width: 500px;
+    border: none;
+    border-bottom: 1px solid black;
+}

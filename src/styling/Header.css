@@ -1,0 +1,28 @@
+.header{
+    min-width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    background-color: black;
+
+}
+.header > h1 {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    
+}
+.user_data{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-left:5px;
+    flex: 1;
+    
+
+}
+button{
+    margin-left: 30px;
+}

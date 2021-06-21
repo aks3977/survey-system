@@ -7,8 +7,7 @@ import {
     setUserData
     
 } from "../features/userSlice";
-import '../styling/Homepage.css'
-import Form from './Form';
+import '../styling/Homepage.css';
 
 
 
@@ -49,9 +48,7 @@ const Homepage = () => {
                 />
             </div>
 
-            ):(
-                <Form/>
-            )
+            ):("")
 
             }
                 

@@ -1,42 +1,36 @@
 import React from 'react';
 import emailjs from 'emailjs-com';
+import '../styling/Form.css';
+import {useSelector} from 'react-redux';
+import {selectSignedIn} from '../features/userSlice';
 
 function Form() {
-    function sendEmail(e){
+    const isSignedIn = useSelector(selectSignedIn);
+
+    function sendEmail(e) {
         e.preventDefault();
 
-        emailjs.sendForm('service_6yhp9k8','template_awdydyh',e.target,'user_tjTznEsFN3owt9AuEJEbG')
-            .then((result)=>{
+        emailjs.sendForm('service_6yhp9k8', 'template_awdydyh', e.target, 'user_tjTznEsFN3owt9AuEJEbG')
+            .then((result) => {
                 console.log(result.text);
-            },(error)=>{
+            }, (error) => {
                 console.log(error.text);
             });
-            e.target.reset()
+        e.target.reset()
     }
     return (
-        <div>
             <div className="container">
-            <form onSubmit={sendEmail}>
-                    <div>
-                        <div>
-                            <input type="text"  placeholder="Name" name="name"/>
-                        </div>
-                        <div>
-                            <input type="email"  placeholder="Email Address" name="email"/>
-                        </div>
-                        <div>
-                            <input type="text"  placeholder="Subject" name="subject"/>
-                        </div>
-                        <div>
-                            <textarea placeholder="Your message" name="message"></textarea>
-                        </div>
-                        <div>
-                            <input type="submit"  value="Send Message"></input>
-                        </div>
-                    </div>
+                <form onSubmit={sendEmail}>
+                    <input type="text" placeholder="Name" name="name" />
+                    <input type="email" placeholder="Email Address" name="email" />
+                    <input type="text" placeholder="Subject" name="subject" />
+                    <textarea placeholder="Your message" name="message"></textarea>
+                    <input className="form_input" type="submit" value="Send Message"></input>
                 </form>
+            
+                
             </div>
-        </div>
+        
     )
 }
 
