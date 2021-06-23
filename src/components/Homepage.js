@@ -8,6 +8,8 @@ import {
     
 } from "../features/userSlice";
 import '../styling/Homepage.css';
+import Form from './Form';
+import AddBoxIcon from '@material-ui/icons/AddBox';
 
 
 
@@ -24,7 +26,7 @@ const Homepage = () => {
     return (
         <div className="home__page">
             {!isSignedIn ?(
-                <div className="login__message">
+                <div className="login__message" style={{display: isSignedIn ? "none" : ""}}>
                 <h2>📗</h2>
                 <h2>Feedbackr The Survey App!</h2>
                 <p>

@@ -1,11 +1,14 @@
 import React from 'react';
 import emailjs from 'emailjs-com';
 import '../styling/Form.css';
-import {useSelector} from 'react-redux';
-import {selectSignedIn} from '../features/userSlice';
+// import {withRouter} from 'react-router-dom';
+
 
 function Form() {
-    const isSignedIn = useSelector(selectSignedIn);
+
+    
+
+
 
     function sendEmail(e) {
         e.preventDefault();
@@ -19,19 +22,23 @@ function Form() {
         e.target.reset()
     }
     return (
-            <div className="container">
-                <form onSubmit={sendEmail}>
-                    <input type="text" placeholder="Name" name="name" />
-                    <input type="email" placeholder="Email Address" name="email" />
-                    <input type="text" placeholder="Subject" name="subject" />
-                    <textarea placeholder="Your message" name="message"></textarea>
-                    <input className="form_input" type="submit" value="Send Message"></input>
-                </form>
-            
-                
-            </div>
-        
+
+        <div className="container">
+
+            <form onSubmit={sendEmail}>
+                <input type="text" placeholder="Name" name="name" />
+                <input type="email" placeholder="Email Address" name="email" />
+                <input type="text" placeholder="Subject" name="subject" />
+                <textarea placeholder="Your message" name="message"></textarea>
+                <input className="form_input" type="submit" value="Send Message"></input>
+            </form>
+
+        </div>
+
+
+
     )
 }
 
-export default Form
+
+export default Form;
