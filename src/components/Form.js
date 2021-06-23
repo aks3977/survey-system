@@ -1,15 +1,13 @@
 import React from 'react';
 import emailjs from 'emailjs-com';
 import '../styling/Form.css';
+import { useSelector } from 'react-redux';
+import { selectSignedIn } from '../features/userSlice';
 // import {withRouter} from 'react-router-dom';
 
 
 function Form() {
-
-    
-
-
-
+    const isSignedIn = useSelector(selectSignedIn);
     function sendEmail(e) {
         e.preventDefault();
 
