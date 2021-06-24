@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {selectSignedIn, selectUserData, setSignedIn, setUserData} from '../features/userSlice';
 import { Avatar } from '@material-ui/core';
 import { GoogleLogout } from 'react-google-login';
+import {Link} from 'react-router-dom';
 
 function Header() {
     const isSignedIn = useSelector(selectSignedIn);
@@ -17,7 +18,10 @@ function Header() {
     }
     return (
         <div className="header">
-        <h1>Feedbackr</h1>
+         <Link to='/'>
+         <h1 className="main-header">Feedbackr</h1>
+         </Link>   
+        
         {isSignedIn && (
             <div className="user_data">
                 <Avatar src={userData?.imageUrl} alt={userData?.name}/>

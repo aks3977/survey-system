@@ -5,11 +5,13 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    
 }
 .add_icon{
     height:100px;
     width: 100px;
-    position: absolute;
+    position: fixed;
     right: 80px;
     bottom: 50px;
 

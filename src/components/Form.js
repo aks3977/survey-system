@@ -1,14 +1,20 @@
-import React from 'react';
+import React,{useState} from 'react';
 import emailjs from 'emailjs-com';
 import '../styling/Form.css';
-import { useSelector } from 'react-redux';
-import { selectSignedIn } from '../features/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectSignedIn, setFormData } from '../features/userSlice';
 import Header from './Header';
 // import {withRouter} from 'react-router-dom';
 
 
 function Form() {
     const isSignedIn = useSelector(selectSignedIn);
+    const dispatch = useDispatch();
+    const [name,setName] = useState('');
+    const [email,setEmail] = useState('');
+    const [subject,setSubject] = useState('');
+    const [message,setMessage] = useState('');
+
     function sendEmail(e) {
         e.preventDefault();
 
@@ -19,6 +25,13 @@ function Form() {
                 console.log(error.text);
             });
         e.target.reset()
+        dispatch(setFormData({
+            item1:name,
+            item2:email,
+            item3:subject,
+            item4:message,
+            id:Date.now()
+        }))
     }
     return (
         <div>
@@ -26,10 +39,10 @@ function Form() {
         <div className="container">
 
             <form onSubmit={sendEmail}>
-                <input type="text" placeholder="Name" name="name" />
-                <input type="email" placeholder="Email Address" name="email" />
-                <input type="text" placeholder="Subject" name="subject" />
-                <textarea placeholder="Your message" name="message"></textarea>
+                <input type="text" placeholder="Name" name="name" onChange={e => setName(e.target.value)} />
+                <input type="email" placeholder="Email Address" name="email" onChange={e => setEmail(e.target.value)}/>
+                <input type="text" placeholder="Subject" name="subject" onChange={e => setSubject(e.target.value)} />
+                <textarea placeholder="Your message" name="message" onChange={e => setMessage(e.target.value)}></textarea>
                 <input className="form_input" type="submit" value="Send Message"></input>
             </form>
 
