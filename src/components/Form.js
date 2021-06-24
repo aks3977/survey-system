@@ -3,6 +3,7 @@ import emailjs from 'emailjs-com';
 import '../styling/Form.css';
 import { useSelector } from 'react-redux';
 import { selectSignedIn } from '../features/userSlice';
+import Header from './Header';
 // import {withRouter} from 'react-router-dom';
 
 
@@ -20,7 +21,8 @@ function Form() {
         e.target.reset()
     }
     return (
-
+        <div>
+            <Header/>
         <div className="container">
 
             <form onSubmit={sendEmail}>
@@ -31,6 +33,7 @@ function Form() {
                 <input className="form_input" type="submit" value="Send Message"></input>
             </form>
 
+        </div>
         </div>
 
 
