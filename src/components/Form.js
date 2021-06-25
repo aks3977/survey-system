@@ -10,14 +10,43 @@ import Header from './Header';
 function Form() {
     const isSignedIn = useSelector(selectSignedIn);
     const dispatch = useDispatch();
+
     const [name,setName] = useState('');
     const [email,setEmail] = useState('');
     const [subject,setSubject] = useState('');
     const [message,setMessage] = useState('');
 
+    let errorsObj = {name:"",email:"",subject:"",message:""};
+    const [errors,setErrors] = useState(errorsObj);
+
     function sendEmail(e) {
         e.preventDefault();
+        let error = false;
+        const errorObj = {...errorsObj};
 
+        if(name === ''){
+            errorObj.name = '* Name is required';
+            error = true;
+        }
+
+        if(email === ''){
+            errorObj.email = '* Email is required';
+            error = true;
+        }
+        
+        if(subject === ''){
+            errorObj.subject = '* Subject is required';
+            error = true;
+        }
+
+        if(message === ''){
+            errorObj.message = '* Message is required';
+            error = true;
+        }
+
+        setErrors(errorObj);
+
+        if(!error){
         emailjs.sendForm('service_6yhp9k8', 'template_awdydyh', e.target, 'user_tjTznEsFN3owt9AuEJEbG')
             .then((result) => {
                 console.log(result.text);
@@ -33,6 +62,8 @@ function Form() {
             id:Date.now()
         }))
     }
+        
+    }
     return (
         <div>
             <Header/>
@@ -40,9 +71,13 @@ function Form() {
 
             <form onSubmit={sendEmail}>
                 <input type="text" placeholder="Name" name="name" onChange={e => setName(e.target.value)} />
+                {errors.name && <div style={{color:'red'}}>{errors.name}</div>}
                 <input type="email" placeholder="Email Address" name="email" onChange={e => setEmail(e.target.value)}/>
+                {errors.email && <div style={{color:'red'}}>{errors.email}</div>}
                 <input type="text" placeholder="Subject" name="subject" onChange={e => setSubject(e.target.value)} />
+                {errors.subject && <div style={{color:'red'}}>{errors.subject}</div>}
                 <textarea placeholder="Your message" name="message" onChange={e => setMessage(e.target.value)}></textarea>
+                {errors.message && <div style={{color:'red'}}>{errors.message}</div>}
                 <input className="form_input" type="submit" value="Send Message"></input>
             </form>
 
