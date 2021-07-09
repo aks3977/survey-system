@@ -5,7 +5,8 @@ const userSlice = createSlice({
   initialState: {
     isSignedIn: false,
     userData: null,
-    formData:[]
+    formData:[],
+    token:null,
 
   },
   reducers: {
@@ -17,6 +18,10 @@ const userSlice = createSlice({
     },
     setUserData: (state, action) => {
       state.userData = action.payload;
+      
+    },
+    setToken:(state,action) => {
+      state.token = action.payload;
     }
   },
 });
@@ -24,11 +29,13 @@ const userSlice = createSlice({
 export const {
   setFormData,
   setSignedIn,
-  setUserData
+  setUserData,
+  setToken
 } = userSlice.actions;
 
 export const selectSignedIn = (state) => state.user.isSignedIn;
 export const selectUserData = (state) => state.user.userData;
 export const selectFormData = (state) => state.user.formData;
+export const selectToken = (state) => state.user.token;
 
 export default userSlice.reducer;

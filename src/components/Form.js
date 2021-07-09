@@ -2,19 +2,24 @@ import React,{useState} from 'react';
 import emailjs from 'emailjs-com';
 import '../styling/Form.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectSignedIn, setFormData } from '../features/userSlice';
+import { useHistory } from 'react-router';
+import { selectSignedIn, setFormData, selectFormData } from '../features/userSlice';
 import Header from './Header';
+import axios from 'axios';
 // import {withRouter} from 'react-router-dom';
 
 
 function Form() {
     const isSignedIn = useSelector(selectSignedIn);
     const dispatch = useDispatch();
+    const formData = useSelector(selectFormData);
 
     const [name,setName] = useState('');
     const [email,setEmail] = useState('');
     const [subject,setSubject] = useState('');
     const [message,setMessage] = useState('');
+    const history = useHistory();
+
 
     let errorsObj = {name:"",email:"",subject:"",message:""};
     const [errors,setErrors] = useState(errorsObj);
@@ -61,6 +66,25 @@ function Form() {
             item4:message,
             id:Date.now()
         }))
+
+        axios.post("http://localhost:4000/formdata",{
+        Name:name,
+
+        Email:email,
+
+        Subject:subject,
+
+        Message:message,
+
+        id:Date.now()
+        })
+        .then(response => {
+            console.log(response);
+        });
+
+        history.push('/'); 
+
+        
     }
         
     }
